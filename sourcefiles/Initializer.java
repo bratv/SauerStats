@@ -3,6 +3,7 @@ package pkg3;
 import java.util.Vector;
 
 import javax.swing.JTable;
+import javax.swing.table.TableRowSorter;
 
 public class Initializer {
 	
@@ -39,10 +40,16 @@ public class Initializer {
 		columns.add("state");
 		
 		Vector<Vector<Object>> list = new Vector<Vector<Object>>();
-		JTable table = new JTable(list, columns);
-		table.setEnabled(false);
 		Communicator com = new Communicator(address, port);
-		Runner runner = new Runner(table, com);
+		MyTableModel model = new MyTableModel(list, columns);
+		Runner runner = new Runner(model, com);
+		JTable table = new JTable(list, columns);
+		table.setModel(model);
+		TableRowSorter<MyTableModel> sorter;
+		sorter = new TableRowSorter<>(model);
+		table.setRowSorter(sorter);
+		sorter.setSortsOnUpdates(true);		
+		//table.setEnabled(false);
 		@SuppressWarnings("unused")
 		MyFrame frame = new MyFrame(table);
 		runner.start();
