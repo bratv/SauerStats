@@ -9,7 +9,6 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 public class Runner implements Runnable{
-	//JTable table;
 	Communicator com;
 	int[] message = {0, 1, -1};
 	Vector<String> columns;
@@ -23,8 +22,6 @@ public class Runner implements Runnable{
 		com = c;		
 		this.model = model;
 		sorter = new TableRowSorter<>(this.model);
-		//table.setRowSorter(sorter);
-		//sorter.setSortsOnUpdates(true);		
 		running = false;
 	}
 
@@ -35,16 +32,8 @@ public class Runner implements Runnable{
 			
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-//					for (int x = 0; x < list.size(); x++) {
-//			            model.addRow(new Vector<Object>());
-//			            for (int y = 0; y < table.getColumnCount(); y++) {			            	
-//			                model.setValueAt(list.get(x).get(y), x, y);
-//			            }
-//					}
-//					model.setRowCount(list.size());
 					model.setData(list);
 					System.out.println("honk");
-
 				}
 			});
 		}
