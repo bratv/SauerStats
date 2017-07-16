@@ -33,7 +33,6 @@ public class Runner implements Runnable{
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
 					model.setData(list);
-					System.out.println("honk");
 				}
 			});
 		}
